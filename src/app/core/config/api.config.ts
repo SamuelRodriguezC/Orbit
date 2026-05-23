@@ -1,17 +1,7 @@
 import { HttpContextToken } from '@angular/common/http';
 
 /**
- * =========================================================
- * API CONFIG
- * =========================================================
  * Configuración centralizada de infraestructura HTTP.
- * Single source of truth para:
- * - Base URLs
- * - Endpoints
- * - Timeouts
- * - Cache strategy
- * - Retry strategy
- * - Headers/context globales
  */
 
 export const API_CONFIG = {
