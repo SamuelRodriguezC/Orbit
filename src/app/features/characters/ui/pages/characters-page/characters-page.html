@@ -1,29 +1,10 @@
-<!-- 🌌 Loading State -->
-@if (loading()) {
-  <p>Cargando personajes...</p>
-}
-
-<!-- ⚠️ Error State -->
-@if (error()) {
-  <div>
-    <p>{{ error() }}</p>
-    <button (click)="onRetry()">Reintentar</button>
-  </div>
-}
-
-<!-- 📭 Empty State -->
-@if (isEmpty()) {
-  <p>No hay personajes disponibles</p>
-}
-
-<!-- 🚀 Content -->
+<!--  Content -->
 @if (!loading() && !error()) {
   <section>
 
-    <!-- 🎛️ Controls -->
+    <!--  Controls -->
     <div>
       <label>Ordenar por:</label>
-
       <select (change)="onSortChange($any($event.target).value)">
         <option value="name">Nombre</option>
         <option value="height">Altura</option>
@@ -31,32 +12,28 @@
       </select>
     </div>
 
-    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!--  GRID MODIFICADO: Centrado absoluto de celdas -->
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center items-center">
       @for (character of characters(); track character.id) {
         
         <app-character-card
           [character]="character"
           (selected)="goToDetail($event)"
+          class="w-full max-w-sm" 
         />
         
       }
     </section>
 
-    <!-- 📄 Pagination -->
+    <!--  Pagination -->
     <footer>
-      <button
-        (click)="onPageChange(page() - 1)"
-        [disabled]="page() === 1"
-      >
+      <button (click)="onPageChange(page() - 1)" [disabled]="page() === 1">
         Anterior
       </button>
 
       <span>Página {{ page() }}</span>
 
-      <button
-        (click)="onPageChange(page() + 1)"
-        [disabled]="page() === totalPages()"
-      >
+      <button (click)="onPageChange(page() + 1)" [disabled]="page() === totalPages()">
         Siguiente
       </button>
     </footer>
