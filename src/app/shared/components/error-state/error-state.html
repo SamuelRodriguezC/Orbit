@@ -1,0 +1,23 @@
+<section
+  class="flex flex-col items-center justify-center rounded-2xl border border-red-500/20 bg-red-500/5 p-10 text-center"
+>
+  <div class="mb-4 text-5xl">
+    !!!
+  </div>
+
+  <h2 class="mb-2 text-2xl font-semibold text-white">
+    {{ title() }}
+  </h2>
+
+  <p class="mb-6 max-w-md text-slate-400">
+    {{ description() }}
+  </p>
+
+  <button
+    type="button"
+    (click)="retry.emit()"
+    class="rounded-xl bg-red-500 px-5 py-3 font-medium text-white transition hover:bg-red-400"
+  >
+    Retry
+  </button>
+</section>
