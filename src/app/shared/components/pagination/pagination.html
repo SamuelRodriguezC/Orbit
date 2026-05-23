@@ -1,0 +1,40 @@
+<nav
+  aria-label="Pagination"
+  class="flex flex-wrap items-center justify-center gap-2"
+>
+  <button
+    type="button"
+    (click)="previous()"
+    [disabled]="currentPage() === 1"
+    class="rounded-xl border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400 disabled:cursor-not-allowed disabled:opacity-40"
+  >
+    Previous
+  </button>
+
+  @for (page of pages(); track page) {
+    <button
+      type="button"
+      (click)="goToPage(page)"
+      [attr.aria-current]="page === currentPage() ? 'page' : null"
+      class="h-10 w-10 rounded-xl border text-sm font-medium transition"
+      [class.bg-cyan-500]="page === currentPage()"
+      [class.text-black]="page === currentPage()"
+      [class.border-cyan-500]="page === currentPage()"
+      [class.border-slate-700]="page !== currentPage()"
+      [class.text-slate-300]="page !== currentPage()"
+      [class.hover:border-cyan-400]="page !== currentPage()"
+      [class.hover:text-cyan-400]="page !== currentPage()"
+    >
+      {{ page }}
+    </button>
+  }
+
+  <button
+    type="button"
+    (click)="next()"
+    [disabled]="currentPage() === totalPages()"
+    class="rounded-xl border border-slate-700 px-4 py-2 text-sm font-medium text-slate-300 transition hover:border-cyan-400 hover:text-cyan-400 disabled:cursor-not-allowed disabled:opacity-40"
+  >
+    Next
+  </button>
+</nav>
