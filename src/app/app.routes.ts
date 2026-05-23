@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-//   {
-//     path: '',
-//     loadComponent: () =>
-//       import('./layout/shell/shell.component')
-//         .then(c => c.ShellComponent),
-
+  {
+    path: '',
+    loadComponent: () =>
+      import('./layout/shell/shell')
+        .then(c => c.Shell),
+  } // Eliminar este corchete para habilitar las rutas hijas 
 //     children: [
 //       {
 //         path: '',
