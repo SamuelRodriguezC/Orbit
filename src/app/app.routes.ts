@@ -6,8 +6,9 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./layout/shell/shell')
         .then(c => c.Shell),
-  } // Eliminar este corchete para habilitar las rutas hijas 
-//     children: [
+  // } // Eliminar este corchete para habilitar las rutas hijas 
+    children: [
+
 //       {
 //         path: '',
 //         loadChildren: () =>
@@ -15,12 +16,12 @@ export const routes: Routes = [
 //             .then(r => r.HOME_ROUTES),
 //       },
 
-//       {
-//         path: 'personajes',
-//         loadChildren: () =>
-//           import('./features/characters/routes/characters.routes')
-//             .then(r => r.CHARACTERS_ROUTES),
-//       },
+      {
+        path: 'personajes',
+        loadChildren: () =>
+          import('./features/characters/characters.routes')
+            .then(r => r.CHARACTERS_ROUTES),
+      },
 
 //       {
 //         path: 'planetas',
@@ -28,7 +29,7 @@ export const routes: Routes = [
 //           import('./features/planets/routes/planets.routes')
 //             .then(r => r.PLANETS_ROUTES),
 //       },
-//     ],
+    ],
 //   },
 
 //   {
@@ -36,5 +37,5 @@ export const routes: Routes = [
 //     loadChildren: () =>
 //       import('./features/not-found/routes/not-found.routes')
 //         .then(r => r.NOT_FOUND_ROUTES),
-//   },
+  },
 ];
