@@ -12,7 +12,14 @@
       </select>
     </div>
 
-    <!--  GRID MODIFICADO: Centrado absoluto de celdas -->
+  <!--  Pagination -->
+   <app-pagination class="block mb-16"
+    [currentPage]="page()"
+      [totalPages]="totalPages()"
+      (pageChange)="onPageChange($event)"
+    />
+
+    <!--  GRID -->
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center items-center">
       @for (character of characters(); track character.id) {
         
@@ -26,17 +33,11 @@
     </section>
 
     <!--  Pagination -->
-    <footer>
-      <button (click)="onPageChange(page() - 1)" [disabled]="page() === 1">
-        Anterior
-      </button>
-
-      <span>Página {{ page() }}</span>
-
-      <button (click)="onPageChange(page() + 1)" [disabled]="page() === totalPages()">
-        Siguiente
-      </button>
-    </footer>
+   <app-pagination class="block mb-16"
+    [currentPage]="page()"
+      [totalPages]="totalPages()"
+      (pageChange)="onPageChange($event)"
+    />
 
   </section>
 }

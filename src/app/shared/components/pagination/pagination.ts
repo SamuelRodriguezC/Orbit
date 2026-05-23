@@ -10,64 +10,48 @@ import {
   selector: 'app-pagination',
   standalone: true,
   templateUrl: './pagination.html',
-  styleUrl: './pagination.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Pagination {
   readonly currentPage = input.required<number>();
 
-  readonly totalItems = input.required<number>();
-
-  readonly itemsPerPage = input(10);
+  readonly totalPages = input.required<number>();
 
   readonly pageChange = output<number>();
 
   /**
-   * Total paginas
+   * Ventana visible de páginas
+   * Evita renderizar demasiados botones.
    */
-  readonly totalPages = computed(() =>
-    Math.ceil(this.totalItems() / this.itemsPerPage()),
-  );
+  readonly visiblePages = computed(() => {
+    const current = this.currentPage();
+    const total = this.totalPages();
 
-  /**
-   * paginas visibles
-   */
-  readonly pages = computed(() =>
-    Array.from(
-      { length: this.totalPages() },
-      (_, index) => index + 1,
-    ),
-  );
+    const delta = 2;
 
-  /**
-   * pagina anterior
-   */
+    const start = Math.max(1, current - delta);
+    const end = Math.min(total, current + delta);
+
+    return Array.from(
+      { length: end - start + 1 },
+      (_, index) => start + index,
+    );
+  });
+
   previous(): void {
-    if (this.currentPage() <= 1) {
-      return;
-    }
+    if (this.currentPage() <= 1) return;
 
     this.pageChange.emit(this.currentPage() - 1);
   }
 
-  /**
-   * pagina siguiente
-   */
   next(): void {
-    if (this.currentPage() >= this.totalPages()) {
-      return;
-    }
+    if (this.currentPage() >= this.totalPages()) return;
 
     this.pageChange.emit(this.currentPage() + 1);
   }
 
-  /**
-   * ir a una pagina especifica 
-   */
   goToPage(page: number): void {
-    if (page === this.currentPage()) {
-      return;
-    }
+    if (page === this.currentPage()) return;
 
     this.pageChange.emit(page);
   }

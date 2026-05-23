@@ -4,6 +4,7 @@ import { SortKey } from '../../../state/characters.utils';
 import { RouterLink } from '@angular/router';
 import { Card } from '../../../ui/components/card/card'; 
 import { Router } from '@angular/router';
+import { Pagination } from '../../../../../shared/components/pagination/pagination';
 
 
 
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
   selector: 'app-characters-page',
   standalone: true,
   templateUrl: './characters-page.html',
-  imports: [Card],
+  imports: [Card, Pagination],
 
 })
 export class CharactersPage implements OnInit {
