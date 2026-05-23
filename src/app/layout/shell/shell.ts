@@ -4,6 +4,8 @@ import { RouterOutlet } from '@angular/router';
 
 import { Header} from '../header/header';
 import { Footer } from '../footer/footer';
+import { LoadingSpinner } from '../../shared/ui/loading-spinner/loading-spinner';
+
 
 @Component({
   selector: 'app-shell',
@@ -12,6 +14,7 @@ import { Footer } from '../footer/footer';
     RouterOutlet,
     Header,
     Footer,
+    LoadingSpinner,
   ],
   templateUrl: './shell.html',
   styleUrl: './shell.css',
