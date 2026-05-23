@@ -47,24 +47,12 @@ export const API_CONFIG = {
 } as const;
 
 /**
- * =========================================================
  * HTTP CONTEXT TOKENS
- * =========================================================
  * Permiten controlar comportamiento
  * request por request.
  */
-
-/**
- * Saltar cache manualmente
- */
 export const SKIP_CACHE = new HttpContextToken<boolean>(() => false);
 
-/**
- * Saltar loading global
- */
 export const SKIP_LOADING = new HttpContextToken<boolean>(() => false);
 
-/**
- * Saltar retry strategy
- */
 export const SKIP_RETRY = new HttpContextToken<boolean>(() => false);
