@@ -1,0 +1,65 @@
+<!-- 🌌 Loading State -->
+@if (loading()) {
+  <p>Cargando personajes...</p>
+}
+
+<!-- ⚠️ Error State -->
+@if (error()) {
+  <div>
+    <p>{{ error() }}</p>
+    <button (click)="onRetry()">Reintentar</button>
+  </div>
+}
+
+<!-- 📭 Empty State -->
+@if (isEmpty()) {
+  <p>No hay personajes disponibles</p>
+}
+
+<!-- 🚀 Content -->
+@if (!loading() && !error()) {
+  <section>
+
+    <!-- 🎛️ Controls -->
+    <div>
+      <label>Ordenar por:</label>
+
+      <select (change)="onSortChange($any($event.target).value)">
+        <option value="name">Nombre</option>
+        <option value="height">Altura</option>
+        <option value="mass">Peso</option>
+      </select>
+    </div>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (character of characters(); track character.id) {
+        
+        <app-character-card
+          [character]="character"
+          (selected)="goToDetail($event)"
+        />
+        
+      }
+    </section>
+
+    <!-- 📄 Pagination -->
+    <footer>
+      <button
+        (click)="onPageChange(page() - 1)"
+        [disabled]="page() === 1"
+      >
+        Anterior
+      </button>
+
+      <span>Página {{ page() }}</span>
+
+      <button
+        (click)="onPageChange(page() + 1)"
+        [disabled]="page() === totalPages()"
+      >
+        Siguiente
+      </button>
+    </footer>
+
+  </section>
+}

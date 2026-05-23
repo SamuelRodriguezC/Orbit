@@ -1,0 +1,19 @@
+@if (loading()) {
+  <p>Cargando personaje...</p>
+}
+
+@if (error()) {
+  <p>{{ error() }}</p>
+  <button (click)="retry()">Reintentar</button>
+}
+
+@if (character()) {
+  <article>
+    <h1>{{ character()?.name }}</h1>
+
+    <p>Altura: {{ character()?.height }}</p>
+    <p>Peso: {{ character()?.mass }}</p>
+    <p>Género: {{ character()?.gender }}</p>
+    <p>Fecha nacimiento: {{ character()?.birthYear }}</p>
+  </article>
+}
