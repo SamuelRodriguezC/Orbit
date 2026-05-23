@@ -1,0 +1,37 @@
+<article class="max-w-sm rounded-2xl border border-slate-100 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900">
+  
+  <!-- Encabezado con el nombre -->
+  <header class="mb-4">
+    <h3 class="text-xl font-bold tracking-tight text-slate-800 dark:text-slate-100">
+      {{ character().name }}
+    </h3>
+  </header>
+
+  <!-- Sección de Datos Técnicos (Organizados en Grid) -->
+  <section class="grid grid-cols-1 gap-2 text-sm font-medium text-slate-600 dark:text-slate-400">
+    <div class="flex items-center gap-2 rounded-lg bg-slate-50 p-2 dark:bg-slate-800/50">
+      <span>⚖️</span>
+      <span>Mass: <strong class="text-slate-900 dark:text-white">{{ character().mass }} kg</strong></span>
+    </div>
+    
+    <div class="flex items-center gap-2 rounded-lg bg-slate-50 p-2 dark:bg-slate-800/50">
+      <span>📏</span>
+      <span>Height: <strong class="text-slate-900 dark:text-white">{{ character().height }} cm</strong></span>
+    </div>
+    
+    <div class="flex items-center gap-2 rounded-lg bg-slate-50 p-2 dark:bg-slate-800/50">
+      <span>🧬</span>
+      <span>Gender: <strong class="text-slate-900 dark:text-white capitalize">{{ character().gender }}</strong></span>
+    </div>
+  </section>
+
+  <!-- Botón de Acción -->
+  <footer class="mt-6">
+    <button 
+      (click)="selected.emit(character().id)"
+      class="w-full rounded-xl bg-indigo-600 px-4 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition-all hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 active:scale-[0.98]">
+      Ver detalle
+    </button>
+  </footer>
+
+</article>

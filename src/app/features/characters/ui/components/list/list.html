@@ -1,0 +1,25 @@
+<section>
+
+  @if (loading()) {
+    <p>Cargando personajes...</p>
+  }
+
+  @if (error()) {
+    <p>{{ error() }}</p>
+    <button (click)="retry()">Reintentar</button>
+  }
+
+  @if (isEmpty()) {
+    <p>No hay personajes</p>
+  }
+
+  <div class="grid">
+    @for (character of characters(); track character.id) {
+      <app-character-card
+        [character]="character"
+        (selected)="goToDetail($event)"
+      />
+    }
+  </div>
+
+</section>

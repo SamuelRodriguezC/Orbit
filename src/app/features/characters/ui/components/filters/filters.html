@@ -1,0 +1,9 @@
+<div class="filters">
+  <label>Ordenar por:</label>
+
+  <select (change)="changeSort($any($event.target).value)">
+    <option value="name">Nombre</option>
+    <option value="height">Altura</option>
+    <option value="mass">Peso</option>
+  </select>
+</div>
