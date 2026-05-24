@@ -1,65 +1,64 @@
-<article
-  class="group rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur overflow-hidden transition-all duration-300 hover:border-cyan-500/30 hover:-translate-y-1"
->
-  <div class="p-6">
-    <header class="mb-5">
-      <h2
-        class="text-2xl font-bold text-white"
-      >
-        {{ planet().name }}
-      </h2>
+<article class="relative max-w-sm overflow-hidden rounded-2xl border border-teal-500/30 bg-black p-6 shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400 hover:shadow-[0_0_25px_rgba(6,182,212,0.35)]">
+  
+  <!-- Detalle decorativo futurista en la esquina superior derecha -->
+  <div class="absolute right-0 top-0 h-12 w-12 bg-gradient-to-bl from-cyan-500/20 to-transparent opacity-70"></div>
+  <div class="absolute right-2 top-2 h-1 w-6 bg-cyan-400"></div>
+  <div class="absolute right-2 top-2 h-3 w-1 bg-cyan-400"></div>
 
-      <p
-        class="text-cyan-300 text-sm mt-2"
-      >
-        {{ planet().climate }}
-      </p>
-    </header>
+  <!-- Encabezado con el nombre y clima -->
+  <header class="mb-5 relative">
+    <span class="text-[10px] font-bold tracking-[0.2em] text-teal-400 uppercase block mb-1">
+      Sistema / Clima: {{ planet().climate }}
+    </span>
+    <h2 class="text-2xl font-black tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-cyan-300 drop-shadow-[0_2px_8px_rgba(6,182,212,0.3)]">
+      {{ planet().name }}
+    </h2>
+  </header>
 
-    <div
-      class="grid grid-cols-2 gap-4 text-sm"
-    >
-      <div>
-        <span class="text-slate-500">
-          Terreno
-        </span>
-
-        <p class="text-slate-200 mt-1">
-          {{ planet().terrain }}
-        </p>
+  <!-- Sección de Datos Técnicos (Grid Espacial) -->
+  <section class="grid grid-cols-1 gap-3 text-xs tracking-wider font-semibold">
+    
+    <!-- TERRENO -->
+    <!-- Se cambia a flex-col e items-start para apilar verticalmente -->
+    <div class="flex flex-col gap-1.5 rounded-xl border border-teal-900/50 bg-teal-950/20 p-3 backdrop-blur-sm transition-colors hover:border-teal-500/40">
+      <div class="flex items-center gap-2">
+        <span class="text-base text-teal-400 drop-shadow-[0_0_5px_rgba(20,184,166,0.5)]">🪐</span>
+        <span class="text-slate-400 uppercase text-[10px]">Terreno</span>
       </div>
-
-      <div>
-        <span class="text-slate-500">
-          Población
-        </span>
-
-        <p class="text-slate-200 mt-1">
-          @if (
-            planet().population !==
-            'unknown'
-          ) {
-            {{
-              planet().population
-                | number
-            }}
-          } @else {
-            Desconocida
-          }
-        </p>
+      <!-- El dato ahora cae abajo de forma natural, añadimos un poco de padding izquierdo para alinearlo con el texto del label si lo deseas (opcional) -->
+      <strong class="text-cyan-400 font-mono text-sm capitalize drop-shadow-[0_0_4px_currentColor] pl-6">
+        {{ planet().terrain }}
+      </strong>
+    </div>
+    
+    <!-- POBLACIÓN -->
+    <!-- Mismo cambio estructural aquí -->
+    <div class="flex flex-col gap-1.5 rounded-xl border border-teal-900/50 bg-teal-950/20 p-3 backdrop-blur-sm transition-colors hover:border-teal-500/40">
+      <div class="flex items-center gap-2">
+        <span class="text-base text-cyan-400 drop-shadow-[0_0_5px_rgba(6,182,212,0.5)]">👥</span>
+        <span class="text-slate-400 uppercase text-[10px]">Población</span>
       </div>
+      <strong class="text-cyan-400 font-mono text-sm drop-shadow-[0_0_4px_currentColor] pl-6">
+        @if (planet().population !== 'unknown') {
+          {{ planet().population | number }}
+        } @else {
+          <span class="text-xs text-teal-600 uppercase font-bold tracking-widest">Desconocida</span>
+        }
+      </strong>
     </div>
 
-    <div class="mt-8">
-      <h3
-        class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider"
-      >
-        Residentes
-      </h3>
+  </section>
 
-      <app-resident-list
-        [residents]="planet().residents"
-      />
+  <!-- Sección inferior de Residentes -->
+  <footer class="mt-6 pt-4 border-t border-teal-900/40">
+    <h3 class="text-[10px] font-black text-slate-500 mb-3 uppercase tracking-[0.15em]">
+      Residentes Registrados
+    </h3>
+
+    <!-- Contenedor adaptado para mantener el contraste sobre fondo negro -->
+    <div class="text-slate-300">
+      <app-resident-list [residents]="planet().residents" />
     </div>
-  </div>
+  </footer>
+
 </article>
