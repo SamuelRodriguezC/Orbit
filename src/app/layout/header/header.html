@@ -1,82 +1,128 @@
-<!-- <header class="header">
+<header class="w-full max-w-5xl mx-auto px-4 sticky top-4 z-50 mt-3">
 
-  <nav class="header__nav">
+  <nav
+    aria-label="Navegación principal"
+    class="flex items-center justify-between px-8 py-3 rounded-full border border-slate-600 bg-slate-950/40 backdrop-blur-md shadow-[0_0_30px_rgba(30,41,59,0.2)]"
+  >
 
+    <!-- Logo -->
     <a
       routerLink="/"
-      class="header__logo"
+      aria-label="Inicio Orbit"
+      class="flex items-center gap-3 group min-w-[44px] min-h-[44px]"
     >
-      Orbitarium
-    </a>
 
-    <div class="header__links">
-
-      <a
-        routerLink="/personajes"
-        routerLinkActive="active"
+      <div
+        class="flex items-center justify-center relative w-5 h-5"
+        aria-hidden="true"
       >
-        Personajes
-      </a>
-
-      <a
-        routerLink="/planetas"
-        routerLinkActive="active"
-      >
-        Planetas
-      </a>
-
-    </div>
-
-  </nav>
-</header> -->
-
-
-<header class="w-full max-w-5xl mx-auto px-4 sticky top-4 z-50 mt-3">
-  
-  <nav aria-label="Navegación principal" class="flex items-center justify-between px-8 py-3 rounded-full border border-slate-600 bg-slate-950/40 backdrop-blur-md shadow-[0_0_30px_rgba(30,41,59,0.2)]">
-    
-    <a href="/" aria-label="Inicio Orbit" class="flex items-center gap-3 group min-w-[44px] min-h-[44px]">
-      <div class="flex items-center justify-center relative w-5 h-5" aria-hidden="true">
         <span class="absolute top-0 size-1.5 rounded-full bg-zinc-300 group-hover:bg-cyan-400 transition-colors"></span>
         <span class="absolute left-0 size-1.5 rounded-full bg-zinc-300 group-hover:bg-cyan-400 transition-colors"></span>
         <span class="absolute right-0 size-1.5 rounded-full bg-zinc-300 group-hover:bg-cyan-400 transition-colors"></span>
         <span class="absolute bottom-0 size-1.5 rounded-full bg-zinc-300 group-hover:bg-cyan-400 transition-colors"></span>
       </div>
-      <span class="text-lg font-black tracking-[0.15em] uppercase bg-gradient-to-r from-slate-100 to-zinc-400 bg-clip-text text-transparent group-hover:from-white group-hover:text-cyan-300 transition-all duration-300">
+
+      <span
+        class="text-lg font-black tracking-[0.15em] uppercase bg-gradient-to-r from-slate-100 to-zinc-400 bg-clip-text text-transparent group-hover:from-white group-hover:to-cyan-300 transition-all duration-300"
+      >
         Orbit
       </span>
+
     </a>
 
     <div class="flex items-center gap-6">
-      
+
+      <!-- Links -->
       <div class="hidden md:flex items-center gap-6 text-zinc-100 text-sm font-medium tracking-wide">
-        <a 
+
+        <!-- Inicio -->
+        <a
           routerLink="/"
-          routerLinkActive="active"
-          class="hover:text-cyan-400 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
-        Inicio
+          routerLinkActive
+          #rlaInicio="routerLinkActive"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="relative transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-cyan-300"
+          [class.text-cyan-400]="rlaInicio.isActive"
+          [class.font-semibold]="rlaInicio.isActive"
+          [class.drop-shadow-[0_0_8px_rgba(34,211,238,0.9)]]="rlaInicio.isActive"
+        >
+
+          Inicio
+
+          @if (rlaInicio.isActive) {
+            <span
+              class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-cyan-400 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.9)] animate-pulse"
+            ></span>
+          }
+
         </a>
-        <a 
+
+        <!-- Planetas -->
+        <a
           routerLink="/planetas"
-          routerLinkActive="active"
-          class="hover:text-cyan-400 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
-        Planetas
+          routerLinkActive
+          #rlaPlanetas="routerLinkActive"
+          class="relative transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-cyan-300"
+          [class.text-cyan-400]="rlaPlanetas.isActive"
+          [class.font-semibold]="rlaPlanetas.isActive"
+          [class.drop-shadow-[0_0_8px_rgba(34,211,238,0.9)]]="rlaPlanetas.isActive"
+        >
+
+          Planetas
+
+          @if (rlaPlanetas.isActive) {
+            <span
+              class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-cyan-400 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.9)] animate-pulse"
+            ></span>
+          }
+
         </a>
-        <a 
+
+        <!-- Personajes -->
+        <a
           routerLink="/personajes"
-          routerLinkActive="active"
-          class="hover:text-cyan-400 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center">
-          Personajes</a>
+          routerLinkActive
+          #rlaPersonajes="routerLinkActive"
+          class="relative transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center hover:text-cyan-300"
+          [class.text-cyan-400]="rlaPersonajes.isActive"
+          [class.font-semibold]="rlaPersonajes.isActive"
+          [class.drop-shadow-[0_0_8px_rgba(34,211,238,0.9)]]="rlaPersonajes.isActive"
+        >
+
+          Personajes
+
+          @if (rlaPersonajes.isActive) {
+            <span
+              class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-cyan-400 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.9)] animate-pulse"
+            ></span>
+          }
+
+        </a>
+
       </div>
 
-      <span class="hidden md:block h-4 w-[1px] bg-slate-800" aria-hidden="true"></span>
+      <!-- Divider -->
+      <span
+        class="md:block h-4 w-[1px] bg-slate-800"
+        aria-hidden="true"
+      ></span>
 
+      <!-- CTA -->
       <div class="flex items-center">
-        <a  routerLink="/personajes"
-            routerLinkActive="active" 
-            class="bg-transparent text-white text-xs font-bold uppercase tracking-wider px-6 py-2 rounded-full border-1 border-cyan-300 shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:shadow-[0_0_30px_rgba(0,255,255,0.7)] transition-all duration-300 hover:bg-cyan-300 hover:text-black min-w-[44px] min-h-[44px] flex items-center justify-center" href="#galeria">
+
+        <a
+          routerLink="/personajes"
+          routerLinkActive
+          #rlaExplorar="routerLinkActive"
+          class="bg-transparent text-white text-xs font-bold uppercase tracking-wider px-6 py-2 rounded-full border border-cyan-300 shadow-[0_0_20px_rgba(0,255,255,0.4)] hover:shadow-[0_0_30px_rgba(0,255,255,0.7)] transition-all duration-300 hover:bg-cyan-300 hover:text-black min-w-[44px] min-h-[44px] flex items-center justify-center"
+          [class.bg-cyan-300]="rlaExplorar.isActive"
+          [class.text-black]="rlaExplorar.isActive"
+        >
+
           Explorar
+
         </a>
+
       </div>
 
     </div>
