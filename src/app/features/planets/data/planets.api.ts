@@ -3,40 +3,33 @@ import { inject, Injectable } from '@angular/core';
 
 import { API_CONFIG } from '../../../core/config/api.config';
 
-export interface SwapiPlanet {
-  name: string;
-
-  climate: string;
-
-  terrain: string;
-
-  population: string;
-
-  diameter: string;
-
-  residents: string[];
-
-  url: string;
-}
-
-export interface SwapiPlanetsResponse {
+export interface SwapiPlanetResponse {
   count: number;
-
   next: string | null;
-
   previous: string | null;
-
   results: SwapiPlanet[];
 }
 
-@Injectable({ providedIn: 'root' })
+export interface SwapiPlanet {
+  name: string;
+  climate: string;
+  terrain: string;
+  population: string;
+  diameter: string;
+  residents: string[];
+  url: string;
+}
+
+@Injectable({
+  providedIn: 'root',
+})
 export class PlanetsApi {
   private readonly http = inject(HttpClient);
 
   private readonly baseUrl = API_CONFIG.baseUrl;
 
   getAll(page: number = 1) {
-    return this.http.get<SwapiPlanetsResponse>(
+    return this.http.get<SwapiPlanetResponse>(
       `${this.baseUrl}${API_CONFIG.endpoints.planets}/?page=${page}`
     );
   }

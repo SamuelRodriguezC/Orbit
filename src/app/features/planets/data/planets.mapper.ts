@@ -1,12 +1,13 @@
-import { CharacterModel } from '../../characters/data/character.model';
+import {
+  PlanetModel,
+  PlanetResident,
+} from './planet.model';
 
-import { PlanetModel } from './planet.model';
 import { SwapiPlanet } from './planets.api';
 
 export class PlanetsMapper {
   static toModel(
-    planet: SwapiPlanet,
-    residents: CharacterModel[]
+    planet: SwapiPlanet
   ): PlanetModel {
     return {
       id: this.extractId(planet.url),
@@ -19,19 +20,39 @@ export class PlanetsMapper {
 
       population: planet.population,
 
-      diameter: this.toNumber(planet.diameter),
+      diameter: Number(planet.diameter) || 0,
 
-      residents,
+      residents: this.mapResidents(
+        planet.residents
+      ),
     };
   }
 
-  private static extractId(url: string): string {
-    return url.split('/').filter(Boolean).pop() ?? '';
+  static toModelList(
+    planets: SwapiPlanet[]
+  ): PlanetModel[] {
+    return planets.map(
+      this.toModel.bind(this)
+    );
   }
 
-  private static toNumber(value: string): number {
-    const parsed = Number(value);
+  private static mapResidents(
+    residents: string[]
+  ): PlanetResident[] {
+    return residents.map((url) => ({
+      id: this.extractId(url),
+      name: 'Unknown',
+    }));
+  }
 
-    return Number.isNaN(parsed) ? 0 : parsed;
+  private static extractId(
+    url: string
+  ): string {
+    return (
+      url
+        .split('/')
+        .filter(Boolean)
+        .pop() ?? ''
+    );
   }
 }
