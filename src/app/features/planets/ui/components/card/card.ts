@@ -18,7 +18,7 @@ import { ResidentList } from '../resident-list/resident-list';
 
   imports: [
     DecimalPipe,
-    ResidentList,
+    // ResidentList,
   ],
 })
 export class Card {

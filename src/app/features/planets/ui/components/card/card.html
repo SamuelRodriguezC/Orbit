@@ -55,7 +55,7 @@
         <span class="text-[9px] font-bold uppercase tracking-widest text-slate-500 block mb-1 pl-1">CENSO BIOMÉTRICO GENERAL</span>
         <strong class="text-cyan-400 text-sm block font-bold tracking-widest pl-1 drop-shadow-[0_0_4px_currentColor]">
           @if (planet().population !== 'unknown') {
-            {{ planet().population | number }} <span class="text-[10px] text-teal-600 font-semibold">ALMAS</span>
+            {{ planet().population | number }} <span class="text-[10px] text-teal-600 font-semibold">HABITANTES</span>
           } @else {
             <span class="text-xs text-red-400 font-black tracking-widest animate-pulse">CENSO NO DISPONIBLE</span>
           }
