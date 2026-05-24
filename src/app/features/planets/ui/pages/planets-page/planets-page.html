@@ -1,0 +1,19 @@
+<!-- PAGINATION TOP -->
+<app-pagination
+  class="block mb-10"
+  [currentPage]="page()"
+  [totalPages]="totalPages()"
+  (pageChange)="onPageChange($event)"
+/>
+
+<app-planets-grid
+  [planets]="planets()"
+/>
+
+<!-- PAGINATION BOTTOM -->
+<app-pagination
+  class="block mt-10"
+  [currentPage]="page()"
+  [totalPages]="totalPages()"
+  (pageChange)="onPageChange($event)"
+/>
