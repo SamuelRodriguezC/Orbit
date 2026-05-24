@@ -1,19 +1,51 @@
-<!-- PAGINATION TOP -->
-<app-pagination
-  class="block mb-10"
-  [currentPage]="page()"
-  [totalPages]="totalPages()"
-  (pageChange)="onPageChange($event)"
-/>
+<section class="space-y-8">
 
-<app-planets-grid
-  [planets]="planets()"
-/>
+  <!--  HERO / HEADER -->
+  <div class="text-center max-w-3xl mx-auto px-4 pt-6">
 
-<!-- PAGINATION BOTTOM -->
-<app-pagination
-  class="block mt-10"
-  [currentPage]="page()"
-  [totalPages]="totalPages()"
-  (pageChange)="onPageChange($event)"
-/>
+    <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1 mb-4 backdrop-blur-md">
+      <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+      <span class="text-[11px] tracking-[0.25em] uppercase text-emerald-300 font-bold">
+        Base de datos de sistemas planetarios
+      </span>
+    </div>
+
+    <h1 class="text-4xl md:text-5xl font-black tracking-tight text-white">
+      Conoce los
+      <span class="bg-gradient-to-r from-emerald-400 via-cyan-300 to-teal-400 bg-clip-text text-transparent">
+        Planetas
+      </span>
+      de la Galaxia
+    </h1>
+
+    <p class="mt-4 text-sm md:text-base text-slate-400 leading-relaxed">
+      Descubre mundos desérticos, sistemas helados y civilizaciones
+      ocultas en los rincones más lejanos del universo. Navega por
+      el atlas galáctico y explora cada planeta desde la terminal
+      orbital de Orbitarium 
+    </p>
+
+  </div>
+
+  <!--  PAGINATION TOP -->
+  <app-pagination
+    class="block mb-10"
+    [currentPage]="page()"
+    [totalPages]="totalPages()"
+    (pageChange)="onPageChange($event)"
+  />
+
+  <!--  PLANETS GRID -->
+  <app-planets-grid
+    [planets]="planets()"
+  />
+
+  <!--  PAGINATION BOTTOM -->
+  <app-pagination
+    class="block mt-10"
+    [currentPage]="page()"
+    [totalPages]="totalPages()"
+    (pageChange)="onPageChange($event)"
+  />
+
+</section>
