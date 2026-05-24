@@ -9,12 +9,12 @@ export const routes: Routes = [
   // } // Eliminar este corchete para habilitar las rutas hijas 
     children: [
 
-//       {
-//         path: '',
-//         loadChildren: () =>
-//           import('./features/home/routes/home.routes')
-//             .then(r => r.HOME_ROUTES),
-//       },
+      {
+        path: '',
+        loadChildren: () =>
+          import('./features/home/home.routes')
+            .then(r => r.HOME_ROUTES),
+      },
 
       {
         path: 'personajes',
