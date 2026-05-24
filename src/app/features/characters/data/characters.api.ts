@@ -15,6 +15,9 @@ export interface SwapiPerson {
   mass: string;
   gender: string;
   birth_year: string;
+  hair_color: string;
+  skin_color: string;
+  eye_color: string;
   homeworld: string;
   url: string;
 }

@@ -16,6 +16,9 @@ export class CharactersMapper {
       gender: person.gender,
       birthYear: person.birth_year,
       homeworldUrl: person.homeworld,
+      hairColor: person.hair_color,
+      skinColor: person.skin_color,
+      eyeColor: person.eye_color,
     };
   }
 

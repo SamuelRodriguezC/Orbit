@@ -1,6 +1,8 @@
-<section class="w-full max-w-4xl mx-auto px-4 py-8 font-mono text-slate-300">
+<section
+  class="min-h-[calc(100vh-80px)] w-full max-w-4xl mx-auto px-4 py-8 font-mono text-slate-300 flex flex-col justify-center "
+>
 
-  <!-- ⏳ ESTADO DE CARGA: Interfaz holográfica parpadeante -->
+<!-- ESTADO DE CARGA: Interfaz holográfica parpadeante -->
   @if (loading()) {
     <div class="animate-pulse space-y-8">
       <div class="h-12 w-2/3 bg-teal-950/40 border border-teal-500/20 rounded-2xl mx-auto"></div>
@@ -15,15 +17,21 @@
     </div>
   }
 
-  <!-- 🚨 ESTADO DE ERROR: Alerta de falla en el hipervínculo -->
+  <!--  ESTADO DE ERROR: Alerta de falla en el hipervínculo -->
   @if (error() && !loading()) {
-    <div class="flex flex-col items-center justify-center p-8 rounded-2xl border border-red-500/30 bg-black/60 max-w-md mx-auto text-center backdrop-blur-md shadow-[0_0_30px_rgba(239,68,68,0.1)]">
-      <div class="w-12 h-12 rounded-full bg-red-500/10 border border-red-500/40 flex items-center justify-center text-red-400 font-bold text-xl mb-4 animate-bounce">
+    <div
+      class="flex flex-col items-center justify-center p-8 rounded-2xl border border-red-500/30 bg-black/60 max-w-md mx-auto text-center backdrop-blur-md shadow-[0_0_30px_rgba(239,68,68,0.1)]"
+    >
+      <div
+        class="w-12 h-12 rounded-full bg-red-500/10 border border-red-500/40 flex items-center justify-center text-red-400 font-bold text-xl mb-4 animate-bounce"
+      >
         ⚠️
       </div>
-      <h3 class="text-red-400 font-bold tracking-wider uppercase text-sm mb-2">Comms Link Severed</h3>
+      <h3 class="text-red-400 font-bold tracking-wider uppercase text-sm mb-2">
+        Comms Link Severed
+      </h3>
       <p class="text-xs text-slate-400 mb-6 leading-relaxed">{{ error() }}</p>
-      <button 
+      <button
         (click)="retry()"
         class="w-full px-6 py-2.5 rounded-xl border border-red-500/40 bg-black text-red-400 text-xs font-bold uppercase tracking-widest hover:bg-red-500 hover:text-black hover:shadow-[0_0_20px_rgba(239,68,68,0.4)] transition-all duration-300 cursor-pointer"
       >
@@ -32,90 +40,183 @@
     </div>
   }
 
-  <!-- 🌌 DETALLE DEL PERSONAJE: Base de datos activa -->
+  <!--  DETALLE DEL PERSONAJE: Base de datos activa -->
   @if (character() && !loading() && !error()) {
-    <article class="relative bg-black/40 backdrop-blur-md border border-teal-500/20 rounded-2xl p-6 md:p-8 shadow-[0_0_40px_rgba(6,182,212,0.05)] overflow-hidden">
-      
+    <article
+      class="relative bg-black/40 backdrop-blur-md border border-teal-500/20 rounded-2xl p-6 md:p-8 shadow-[0_0_50px_rgba(6,182,212,0.2)] overflow-hidden"
+    >
       <!-- Decoración Sci-Fi angular en las esquinas -->
       <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-400"></div>
       <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-cyan-400"></div>
 
       <!-- Cabecera del Expediente -->
-      <header class="border-b border-teal-500/10 pb-6 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <header
+        class="border-b border-teal-500/10 pb-6 mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+      >
         <div>
-          <span class="text-[10px] text-teal-500 font-bold uppercase tracking-[0.2em] block mb-1">Expediente del Sujeto //</span>
-          <h1 class="text-2xl md:text-4xl font-black tracking-wide text-white bg-gradient-to-r from-white via-slate-200 to-cyan-300 bg-clip-text text-transparent">
+          <span class="text-[10px] text-teal-500 font-bold uppercase tracking-[0.2em] block mb-1"
+            >Expediente del Sujeto //</span
+          >
+          <h1
+            class="text-2xl md:text-4xl font-black tracking-wide text-white bg-gradient-to-r from-white via-slate-200 to-cyan-300 bg-clip-text text-transparent"
+          >
             {{ character()?.name }}
           </h1>
         </div>
-        <a 
-          routerLink="/personajes" 
+        <a
+          routerLink="/personajes"
           class="text-xs font-bold uppercase tracking-wider text-teal-400 hover:text-cyan-300 flex items-center gap-2 transition-colors group px-3 py-1.5 rounded-lg border border-teal-500/20 bg-black/40"
         >
-          <span class="group-hover:-translate-x-1 transition-transform">←</span> Return to Archives
+          <span class="group-hover:-translate-x-1 transition-transform">←</span> VOLVER 
         </a>
       </header>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
         <!-- Bloque Visual / Avatar Simulado -->
-        <div class="md:col-span-1 flex flex-col items-center justify-center p-6 rounded-xl border border-teal-500/10 bg-gradient-to-b from-teal-950/10 to-transparent relative group">
-          <div class="absolute inset-0 bg-cyan-500/[0.02] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%] pointer-events-none rounded-xl"></div>
-          <div class="w-32 h-32 rounded-full border-2 border-dashed border-teal-500/30 flex items-center justify-center text-4xl text-teal-500/40 relative mb-4 group-hover:border-cyan-400/60 group-hover:text-cyan-400 transition-all duration-500 shadow-[inset_0_0_20px_rgba(6,182,212,0.05)]">
+        <div
+          class="md:col-span-1 flex flex-col items-center justify-center p-6 rounded-xl border border-teal-500/10 bg-gradient-to-b from-teal-950/10 to-transparent relative group"
+        >
+          <div
+            class="absolute inset-0 bg-cyan-500/[0.02] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[size:100%_4px,3px_100%] pointer-events-none rounded-xl"
+          ></div>
+          <div
+            class="w-32 h-32 rounded-full border-2 border-dashed border-teal-500/30 flex items-center justify-center text-4xl text-teal-500/40 relative mb-4 group-hover:border-cyan-400/60 group-hover:text-cyan-400 transition-all duration-500 shadow-[inset_0_0_20px_rgba(6,182,212,0.05)]"
+          >
             🪐
-            <span class="absolute -inset-2 rounded-full border border-cyan-400/10 animate-spin [animation-duration:12s]"></span>
+            <span
+              class="absolute -inset-2 rounded-full border border-cyan-400/10 animate-spin [animation-duration:12s]"
+            ></span>
           </div>
-          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center">Escaneo Biométrico Activo</span>
+          <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest text-center"
+            >Escaneo Biométrico Activo</span
+          >
         </div>
 
         <!-- Bloque de Datos / Especificaciones Técnicas -->
-        <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          
+        <!-- Bloque de Datos / Especificaciones Técnicas -->
+        <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
           <!-- Altura -->
-          <div class="p-4 rounded-xl border border-teal-500/10 bg-black/30 flex flex-col justify-between">
-            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">📏 Altura</span>
+          <div
+            class="p-4 rounded-xl border border-teal-500/10 bg-black/30 flex flex-col justify-between"
+          >
+            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">
+               Altura
+            </span>
+
             <div class="flex items-baseline gap-1 mt-2">
-              <span class="text-2xl font-bold text-cyan-400">{{ character()?.height }}</span>
-              <span class="text-xs text-teal-600">cm</span>
+              <span class="text-2xl font-bold text-cyan-400">
+                {{ character()?.height }}
+              </span>
+
+              <span class="text-xs text-teal-600"> cm </span>
             </div>
           </div>
 
           <!-- Peso -->
-          <div class="p-4 rounded-xl border border-teal-500/10 bg-black/30 flex flex-col justify-between">
-            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">⚖️ Peso</span>
+          <div
+            class="p-4 rounded-xl border border-teal-500/10 bg-black/30 flex flex-col justify-between"
+          >
+            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">
+               Peso
+            </span>
+
             <div class="flex items-baseline gap-1 mt-2">
-              <span class="text-2xl font-bold text-cyan-400">{{ character()?.mass }}</span>
-              <span class="text-xs text-teal-600">kg</span>
+              <span class="text-2xl font-bold text-cyan-400">
+                {{ character()?.mass }}
+              </span>
+
+              <span class="text-xs text-teal-600"> kg </span>
             </div>
           </div>
 
           <!-- Género -->
-          <div class="p-4 rounded-xl border border-teal-500/10 bg-black/30 flex flex-col justify-between">
-            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">🧬 Genero</span>
+          <div
+            class="p-4 rounded-xl border border-teal-500/10 bg-black/30 flex flex-col justify-between"
+          >
+            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">
+               Género
+            </span>
+
             <span class="text-lg font-bold text-white uppercase tracking-wide mt-2">
-              {{ character()?.gender === 'n/a' ? 'Mechanoid / Droide' : character()?.gender }}
+              {{ character()?.gender }}
             </span>
           </div>
 
-          <!-- Fecha de Nacimiento -->
-          <div class="p-4 rounded-xl border border-teal-500/10 bg-black/30 flex flex-col justify-between">
-            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">⏳ Ciclos en Orbita</span>
+          <!-- Año de nacimiento -->
+          <div
+            class="p-4 rounded-xl border border-teal-500/10 bg-black/30 flex flex-col justify-between"
+          >
+            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">
+               Ciclos en Órbita
+            </span>
+
             <span class="text-lg font-bold text-white tracking-wider mt-2">
-              {{ character()?.birthYear === 'unknown' ? 'Sin Rastro' : character()?.birthYear }}
+              {{ character()?.birthYear === 'unknown' ? 'Sin registro' : character()?.birthYear }}
             </span>
           </div>
 
-        </div>
+          <!-- Color de cabello -->
+          <div
+            class="p-4 rounded-xl border border-teal-500/10 bg-black/30 flex flex-col justify-between"
+          >
+            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">
+               Color de Cabello
+            </span>
 
+            <span class="text-lg font-bold text-cyan-300 tracking-wide mt-2 capitalize">
+              {{ character()?.hairColor === 'n/a' ? 'No detectable' : character()?.hairColor }}
+            </span>
+          </div>
+
+          <!-- Color de piel -->
+          <div
+            class="p-4 rounded-xl border border-teal-500/10 bg-black/30 flex flex-col justify-between"
+          >
+            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-500">
+                Color de Piel
+            </span>
+
+            <span class="text-lg font-bold text-cyan-300 tracking-wide mt-2 capitalize">
+              {{ character()?.skinColor === 'n/a' ? 'Unknown' : character()?.skinColor }}
+            </span>
+          </div>
+
+          <!-- Color de ojos -->
+          <div
+            class="sm:col-span-2 xl:col-span-3 p-4 rounded-xl border border-cyan-500/10 bg-gradient-to-r from-cyan-950/10 to-transparent flex items-center justify-between gap-4"
+          >
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500 block">
+                 Globo Ocular
+              </span>
+
+              <h3 class="text-2xl font-black text-cyan-300 mt-2 capitalize">
+                {{ character()?.eyeColor }}
+              </h3>
+            </div>
+
+            <div
+              class="w-14 h-14 rounded-full border border-cyan-400/20 flex items-center justify-center relative overflow-hidden bg-black/40"
+            >
+              <div
+                class="absolute inset-2 rounded-full border border-cyan-400/30 animate-ping"
+              ></div>
+
+              <div
+                class="w-5 h-5 rounded-full bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.7)]"
+              ></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Footer Interno Decorativo del Expediente -->
-      <footer class="mt-8 pt-4 border-t border-teal-500/10 flex justify-between items-center text-[9px] text-teal-600/60 font-mono tracking-widest">
+      <footer
+        class="mt-8 pt-4 border-t border-teal-500/10 flex justify-between items-center text-[9px] text-teal-600/60 font-mono tracking-widest"
+      >
         <span>NIVEL DE SEGURIDAD: CLASIFICADO</span>
         <span class="animate-pulse">● CONEXIÓN SEGURA</span>
       </footer>
-
     </article>
   }
-
 </section>

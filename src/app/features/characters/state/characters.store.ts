@@ -100,6 +100,7 @@ export class CharactersStore {
   resetDetail(): void {
     this.selectedCharacter.set(null);
   }
+  
 
   // =========================
   // GLOBAL RESET
