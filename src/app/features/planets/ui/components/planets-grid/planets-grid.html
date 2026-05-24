@@ -1,12 +1,9 @@
-<div
-  class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
->
-  @for (
-    planet of planets();
-    track planet.id
-  ) {
+<!-- 🎴 GRID DE PLANETAS (Alineación corregida en altura) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
+  @for (planet of planets(); track planet.id) {
     <app-planet-card
       [planet]="planet"
+      class="w-full max-w-sm h-full" 
     />
   }
-</div>
+</section>

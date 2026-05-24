@@ -1,8 +1,8 @@
-<!-- 🚀 Content -->
+<!--  Content -->
 @if (!loading() && !error()) {
   <section>
 
-    <!-- 🎛️ CONTROLS (Centrado en el medio de la interfaz) -->
+    <!--  CONTROLS (Centrado en el medio de la interfaz) -->
     <div class="flex items-center gap-4 mb-4 mt-5 p-4 rounded-xl border border-teal-500/20 bg-black/40 backdrop-blur-md mx-auto max-w-xs font-mono">
       
       <!-- Etiqueta del filtro -->
@@ -32,14 +32,14 @@
 
     </div>
 
-    <!-- 📄 Pagination (Superior) -->
+    <!--  Pagination (Superior) -->
     <app-pagination class="block mb-8"
       [currentPage]="page()"
       [totalPages]="totalPages()"
       (pageChange)="onPageChange($event)"
     />
 
-    <!-- 🎴 GRID -->
+    <!--  GRID -->
     <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center items-center">
       @for (character of characters(); track character.id) {
         <app-character-card
