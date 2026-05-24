@@ -1,5 +1,7 @@
 import {
   ApplicationConfig,
+  inject,
+  provideAppInitializer,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -30,8 +32,14 @@ import {
   loadingInterceptor,
 } from './core/interceptors';
 
+import {
+  SeoRouteService,
+} from './core/seo/seo-route.service';
+
 export const appConfig: ApplicationConfig = {
+
   providers: [
+
     /**
      * Global Angular errors
      */
@@ -48,6 +56,7 @@ export const appConfig: ApplicationConfig = {
      * Router moderno
      */
     provideRouter(
+
       routes,
 
       /**
@@ -74,6 +83,7 @@ export const appConfig: ApplicationConfig = {
      * HttpClient moderno
      */
     provideHttpClient(
+
       /**
        * Fetch API moderna
        */
@@ -95,5 +105,16 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(
       withEventReplay(),
     ),
+
+    /**
+     * Inicialización global SEO
+     */
+    provideAppInitializer(() => {
+
+      const seoRouteService =
+        inject(SeoRouteService);
+
+      seoRouteService.init();
+    }),
   ],
 };
