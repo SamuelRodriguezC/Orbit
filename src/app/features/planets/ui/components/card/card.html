@@ -1,0 +1,65 @@
+<article
+  class="group rounded-3xl border border-slate-800 bg-slate-900/50 backdrop-blur overflow-hidden transition-all duration-300 hover:border-cyan-500/30 hover:-translate-y-1"
+>
+  <div class="p-6">
+    <header class="mb-5">
+      <h2
+        class="text-2xl font-bold text-white"
+      >
+        {{ planet().name }}
+      </h2>
+
+      <p
+        class="text-cyan-300 text-sm mt-2"
+      >
+        {{ planet().climate }}
+      </p>
+    </header>
+
+    <div
+      class="grid grid-cols-2 gap-4 text-sm"
+    >
+      <div>
+        <span class="text-slate-500">
+          Terreno
+        </span>
+
+        <p class="text-slate-200 mt-1">
+          {{ planet().terrain }}
+        </p>
+      </div>
+
+      <div>
+        <span class="text-slate-500">
+          Población
+        </span>
+
+        <p class="text-slate-200 mt-1">
+          @if (
+            planet().population !==
+            'unknown'
+          ) {
+            {{
+              planet().population
+                | number
+            }}
+          } @else {
+            Desconocida
+          }
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <h3
+        class="text-sm font-semibold text-slate-400 mb-3 uppercase tracking-wider"
+      >
+        Residentes
+      </h3>
+
+      <app-resident-list
+        [residents]="planet().residents"
+      />
+    </div>
+  </div>
+</article>
