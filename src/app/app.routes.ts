@@ -23,12 +23,13 @@ export const routes: Routes = [
             .then(r => r.CHARACTERS_ROUTES),
       },
 
-//       {
-//         path: 'planetas',
-//         loadChildren: () =>
-//           import('./features/planets/routes/planets.routes')
-//             .then(r => r.PLANETS_ROUTES),
-//       },
+      {
+
+        path: 'planetas',
+        loadChildren: () =>
+          import('./features/planets/planets.routes')
+            .then(r => r.PLANETS_ROUTES),
+      },
     ],
 //   },
 
