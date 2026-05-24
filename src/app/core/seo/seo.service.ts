@@ -7,6 +7,9 @@ import {
   Meta,
   Title,
 } from '@angular/platform-browser';
+import { APP_CONFIG }
+  from '../config/app.config';
+
 
 import {
   DOCUMENT,
@@ -28,7 +31,7 @@ export class SeoService {
   private readonly document = inject(DOCUMENT);
 
 
-  private readonly siteName = 'Orbit';
+  private readonly siteName = APP_CONFIG.appName;
 
   // Orquestador principal de la configuración SEO de la ruta actual.
   updateSeo(config: SeoConfig): void {
