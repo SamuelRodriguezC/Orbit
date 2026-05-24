@@ -1,7 +1,7 @@
 import {
   Component,
-  effect,
   inject,
+  OnInit,
 } from '@angular/core';
 
 import {
@@ -12,62 +12,36 @@ import {
 import { PlanetsFacade } from '../../../state/planets.facade';
 
 import { PlanetsGrid } from '../../components/planets-grid/planets-grid';
-
 import { Pagination } from '../../../../../shared/components/pagination/pagination';
 
 import { PlanetSortKey } from '../../../state/planets.utils';
 
 @Component({
   selector: 'app-planets-page',
-
   standalone: true,
-
   templateUrl: './planets-page.html',
-
   imports: [
     PlanetsGrid,
     Pagination,
   ],
 })
-export class PlanetsPage {
-  private readonly facade =
-    inject(PlanetsFacade);
+export class PlanetsPage implements OnInit {
+  private readonly facade = inject(PlanetsFacade);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
 
-  private readonly title =
-    inject(Title);
+  readonly planets = this.facade.planets;
+  readonly loading = this.facade.loading;
+  readonly error = this.facade.error;
+  readonly hasPlanets = this.facade.hasPlanets;
+  readonly totalPages = this.facade.totalPages;
+  readonly page = this.facade.page;
 
-  private readonly meta =
-    inject(Meta);
-
-  readonly planets =
-    this.facade.planets;
-
-  readonly loading =
-    this.facade.loading;
-
-  readonly error =
-    this.facade.error;
-
-  readonly hasPlanets =
-    this.facade.hasPlanets;
-
-  readonly totalPages =
-    this.facade.totalPages;
-
-  readonly page =
-    this.facade.page;
-
-  constructor() {
+  ngOnInit(): void {
     this.initializeSeo();
 
-    effect(() => {
-      if (
-        !this.hasPlanets() &&
-        !this.loading()
-      ) {
-        this.facade.load();
-      }
-    });
+    // 🚀 carga inmediata = mejora LCP y reduce cadena crítica
+    this.facade.load();
   }
 
   onPageChange(page: number) {
@@ -79,9 +53,7 @@ export class PlanetsPage {
     });
   }
 
-  onSortChange(
-    sort: PlanetSortKey
-  ) {
+  onSortChange(sort: PlanetSortKey) {
     this.facade.changeSort(sort);
   }
 
@@ -90,14 +62,11 @@ export class PlanetsPage {
   }
 
   private initializeSeo() {
-    this.title.setTitle(
-      'Planetas | Orbitarium'
-    );
+    this.title.setTitle('Planetas | Orbitarium');
 
     this.meta.updateTag({
       name: 'description',
-      content:
-        'Explora los planetas del universo Star Wars.',
+      content: 'Explora los planetas del universo Star Wars.',
     });
   }
 }
