@@ -6,7 +6,7 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
-
+import compression from 'compression';
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
@@ -35,6 +35,21 @@ app.use(
   }),
 );
 
+/**
+ * COMPRESIÓN GLOBAL (gzip)
+ */
+app.use(compression());
+
+/**
+ * Serve static files from /browser
+ */
+app.use(
+  express.static(browserDistFolder, {
+    maxAge: '1y',
+    index: false,
+    redirect: false,
+  }),
+);
 /**
  * Handle all other requests by rendering the Angular application.
  */
