@@ -76,9 +76,17 @@
       </span>
     </div>
 
-    <div class="text-slate-300">
-      <app-resident-list [residents]="planet().residents" />
-    </div>
+<div
+  class="flex items-center gap-2 text-xs font-mono"
+>
+  <span class="text-cyan-400">
+    {{ planet().residents.length }}
+  </span>
+
+  <span class="text-slate-400">
+    Registrado(s)
+  </span>
+</div>
   </footer>
 
 </article>
