@@ -1,51 +1,59 @@
 <section class="space-y-8">
 
-  <!--  HERO / HEADER -->
-  <div class="text-center max-w-3xl mx-auto px-4 pt-6">
+  <!-- HERO -->
+  <header
+    class="mx-auto max-w-3xl px-4 pt-6 text-center"
+  >
 
-    <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1 mb-4 backdrop-blur-md">
-      <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      <span class="text-[11px] tracking-[0.25em] uppercase text-emerald-300 font-bold">
+    <!-- Badge -->
+    <div
+      class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-1"
+    >
+      <span
+        class="h-2 w-2 rounded-full bg-emerald-400"
+      ></span>
+
+      <span
+        class="text-[11px] font-bold uppercase tracking-[0.25em] text-emerald-300"
+      >
         Base de datos de sistemas planetarios
       </span>
     </div>
 
-    <h1 class="text-4xl md:text-5xl font-black tracking-tight text-white">
+    <!-- LCP -->
+    <h1
+      class="text-4xl font-black tracking-tight text-white md:text-5xl"
+    >
       Conoce los
-      <span class="bg-gradient-to-r from-emerald-400 via-cyan-300 to-teal-400 bg-clip-text text-transparent">
+
+      <span class="text-cyan-300">
         Planetas
       </span>
+
       de la Galaxia
     </h1>
 
-    <p class="mt-4 text-sm md:text-base text-slate-400 leading-relaxed">
+    <!-- Description -->
+    <p
+      class="mt-4 text-sm leading-relaxed text-slate-400 md:text-base"
+    >
       Descubre mundos desérticos, sistemas helados y civilizaciones
-      ocultas en los rincones más lejanos del universo. Navega por
-      el atlas galáctico y explora cada planeta desde la terminal
-      orbital de Orbitarium 
+      ocultas en los rincones más lejanos del universo.
     </p>
 
-  </div>
+  </header>
 
-  <!--  PAGINATION TOP -->
+  <!-- PAGINATION -->
   <app-pagination
-    class="block mb-10"
+    class="mb-10 block"
     [currentPage]="page()"
     [totalPages]="totalPages()"
     (pageChange)="onPageChange($event)"
   />
 
-  <!--  PLANETS GRID -->
+  <!-- GRID -->
   <app-planets-grid
     [planets]="planets()"
-  />
-
-  <!--  PAGINATION BOTTOM -->
-  <app-pagination
-    class="block mt-10"
-    [currentPage]="page()"
-    [totalPages]="totalPages()"
-    (pageChange)="onPageChange($event)"
   />
 
 </section>
