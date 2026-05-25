@@ -1,32 +1,23 @@
 <article
-  class="group relative flex h-full w-full flex-col justify-between overflow-hidden rounded-2xl border border-cyan-500/20 bg-gradient-to-b from-black via-slate-950/40 to-black p-5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/50"
+  class="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-cyan-500/20 bg-black/90 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/40"
 >
 
-  <!-- Radar futurista optimizado -->
+  <!-- Línea superior futurista -->
   <div
-    class="absolute -right-10 -top-10 h-32 w-32 rounded-full border border-cyan-500/10 pointer-events-none"
-  >
-    <div
-      class="absolute inset-3 rounded-full border border-dashed border-cyan-500/10 animate-spin [animation-duration:35s]"
-    ></div>
-  </div>
-
-  <!-- Línea HUD superior -->
-  <div
-    class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent"
+    class="absolute inset-x-0 top-0 h-px bg-cyan-400/40"
   ></div>
 
   <!-- Header -->
-  <header class="relative mb-5 border-b border-cyan-900/30 pb-3">
+  <header class="mb-4 border-b border-cyan-900/20 pb-3">
 
     <span
-      class="mb-2 block text-[9px] font-black uppercase tracking-[0.28em] text-cyan-400/80"
+      class="block text-[9px] font-black uppercase tracking-[0.25em] text-cyan-400/70"
     >
-      PLANETA LOCALIZADO
+      PLANETA
     </span>
 
     <h2
-      class="bg-gradient-to-r from-white via-slate-200 to-cyan-300 bg-clip-text text-3xl font-black tracking-wide text-transparent"
+      class="mt-1 text-2xl font-black tracking-wide text-white"
     >
       {{ planet().name }}
     </h2>
@@ -34,110 +25,69 @@
   </header>
 
   <!-- DATA -->
-  <ul class="space-y-3 font-mono text-xs">
+  <div class="space-y-2 font-mono text-xs">
 
-    <!-- Clima -->
-    <li
-      class="rounded-xl border border-cyan-500/10 bg-cyan-500/[0.03] p-3 transition-colors duration-200 hover:border-cyan-400/30"
+    <div
+      class="rounded-lg border border-cyan-500/10 px-3 py-2"
     >
+      <p class="text-[9px] uppercase tracking-[0.18em] text-slate-500">
+        Atmósfera
+      </p>
 
-      <span
-        class="mb-1 block text-[9px] font-bold uppercase tracking-[0.2em] text-slate-500"
-      >
-        Condición Atmosférica
-      </span>
-
-      <strong
-        class="text-sm font-bold capitalize tracking-wide text-cyan-300"
-      >
+      <strong class="text-cyan-300 capitalize">
         {{ planet().climate }}
       </strong>
+    </div>
 
-    </li>
-
-    <!-- Terreno -->
-    <li
-      class="rounded-xl border border-cyan-500/10 bg-cyan-500/[0.03] p-3 transition-colors duration-200 hover:border-cyan-400/30"
+    <div
+      class="rounded-lg border border-cyan-500/10 px-3 py-2"
     >
+      <p class="text-[9px] uppercase tracking-[0.18em] text-slate-500">
+        Superficie
+      </p>
 
-      <span
-        class="mb-1 block text-[9px] font-bold uppercase tracking-[0.2em] text-slate-500"
-      >
-        Composición Superficial
-      </span>
-
-      <strong
-        class="text-sm font-bold capitalize tracking-wide text-teal-300"
-      >
+      <strong class="text-teal-300 capitalize">
         {{ planet().terrain }}
       </strong>
+    </div>
 
-    </li>
-
-    <!-- Población -->
-    <li
-      class="rounded-xl border border-cyan-500/10 bg-cyan-500/[0.03] p-3 transition-colors duration-200 hover:border-cyan-400/30"
+    <div
+      class="rounded-lg border border-cyan-500/10 px-3 py-2"
     >
-
-      <span
-        class="mb-1 block text-[9px] font-bold uppercase tracking-[0.2em] text-slate-500"
-      >
-        Censo Biométrico
-      </span>
+      <p class="text-[9px] uppercase tracking-[0.18em] text-slate-500">
+        Población
+      </p>
 
       @if (planet().population !== 'unknown') {
 
-        <strong
-          class="text-sm font-bold tracking-widest text-cyan-300"
-        >
+        <strong class="text-cyan-300">
           {{ planet().population | number }}
-
         </strong>
 
       } @else {
 
-        <span
-          class="text-[10px] font-black uppercase tracking-[0.2em] text-red-400"
-        >
+        <span class="text-[10px] uppercase text-red-400">
           No disponible
         </span>
 
       }
 
-    </li>
+    </div>
 
-  </ul>
+  </div>
 
   <!-- Footer -->
-  <footer class="mt-5 border-t border-cyan-900/30 pt-4">
+  <footer
+    class="mt-4 flex items-center justify-between border-t border-cyan-900/20 pt-3 text-xs"
+  >
 
-    <div class="mb-2 flex items-center justify-between">
+    <span class="uppercase tracking-[0.18em] text-slate-500">
+      Residentes
+    </span>
 
-      <span
-        class="text-[9px] font-black uppercase tracking-[0.22em] text-slate-500"
-      >
-        Residentes
-      </span>
-
-      <span
-        class="rounded border border-cyan-500/20 bg-cyan-950/40 px-1.5 py-0.5 text-[8px] font-bold text-cyan-400"
-      >
-        ACTIVO
-      </span>
-
-    </div>
-
-    <div class="flex items-center gap-2 font-mono text-xs">
-
-      <strong class="text-cyan-300">
-        {{ planet().residents.length }}
-      </strong>
-
-      <span class="text-slate-400">
-        registrados
-      </span>
-
-    </div>
+    <strong class="font-mono text-cyan-300">
+      {{ planet().residents.length }}
+    </strong>
 
   </footer>
 
