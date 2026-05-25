@@ -1,59 +1,180 @@
-# Orbit
+# 🌌 Orbitarium
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
+Micrositio desarrollado con Angular 21 que consume la API pública de Star Wars usando arquitectura moderna, SSR, Signals y optimización Lighthouse 90+.
 
-## Development server
+## 🚀 Tecnologías
 
-To start a local development server, run:
+* Angular 21
+* Standalone Components
+* Signals
+* SSR + Hydration
+* RxJS
+* TailwindCSS
+* TypeScript
 
-```bash
-ng serve
-```
+API utilizada:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+https://swapi.py4e.com/documentation
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+# 📂 Arquitectura
 
-```bash
-ng generate component component-name
-```
+El proyecto implementa una arquitectura:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+* Feature Based
+* Clean Architecture ligera
+* Escalable y mantenible
 
 ```bash
-ng build
+src/app
+├── core
+├── shared
+├── layout
+├── features
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Features
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Cada feature está desacoplada:
 
 ```bash
-ng test
+features/
+└── characters
+    ├── data
+    ├── state
+    ├── ui
+    └── characters.routes.ts
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+# ✨ Funcionalidades
+
+## 👥 Personajes
+
+Ruta:
 
 ```bash
-ng e2e
+/personajes
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Características:
 
-## Additional Resources
+* Consumo paginado de `/people`
+* Ordenamiento:
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+  * nombre
+  * peso
+  * altura
+* Query params
+* Loading / Error / Empty states
+* Navegación a detalle
+
+Ejemplo:
+
+```bash
+/personajes?ordenar=peso
+```
+
+---
+
+## 🧬 Detalle de personaje
+
+Ruta:
+
+```bash
+/personajes/:id
+```
+
+Características:
+
+* Consumo de `/people/:id`
+* SEO dinámico
+* Render optimizado
+* Accesibilidad
+
+---
+
+## 🌍 Planetas
+
+Ruta:
+
+```bash
+/planetas
+```
+
+Características:
+
+* Consumo de `/planets`
+* Agrupación de residentes por planeta
+
+---
+
+# ⚡ Performance
+
+El proyecto está optimizado para Lighthouse 90+ usando:
+
+* SSR
+* Lazy Loading
+* Code Splitting
+* Hydration
+* Signals
+* Cache HTTP
+* Deferred Loading
+
+---
+
+# 🔍 SEO
+
+Cada ruta implementa:
+
+* Dynamic Title
+* Meta Description
+* Canonical URL
+* Semantic HTML
+
+---
+
+# 🛠️ Instalación
+
+## Clonar repositorio
+
+```bash
+git clone <repo-url>
+```
+
+## Instalar dependencias
+
+```bash
+npm install
+```
+
+## Ejecutar proyecto
+
+```bash
+npm run start
+```
+
+## Ejecutar SSR
+
+```bash
+npm run serve:ssr
+```
+
+---
+
+# 📊 Lighthouse
+
+Objetivo:
+
+* Performance: 95+
+* Accessibility: 95+
+* Best Practices: 95+
+* SEO: 100
+
+---
+
+# 👨‍💻 Autor
+
+Samuel Rodriguez 🚀
